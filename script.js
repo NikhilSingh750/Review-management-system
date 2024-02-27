@@ -1,3 +1,4 @@
+// add delete button in cards
 let stars = document.querySelectorAll('.star');
 let submit_button = document.getElementById('submit-button');
 submit_button.disabled = true
