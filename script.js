@@ -1,11 +1,14 @@
 // add delete button in cards
 let stars = document.querySelectorAll('.star');
 let submit_button = document.getElementById('submit-button');
+let bollean = true;
 submit_button.disabled = true
 let num  =0
 let array = Array.from(stars)
 array.forEach((element, index) => {
+    //this elenelistner make star gold and grey on click
     element.addEventListener('click', () => {
+        bollean = false
         num = index
         let bx2 = document.querySelectorAll('.bx')
         let array2 = Array.from(bx2)
@@ -19,6 +22,34 @@ array.forEach((element, index) => {
         }
         submit_button.disabled = false
     })
+
+    element.addEventListener('mouseenter', () => {
+        num = index
+        let bx2 = document.querySelectorAll('.bx')
+        let array2 = Array.from(bx2)
+        for (let i = 0; i <= num; i++) {
+            array2[i].style.color = 'gold'
+        }
+        for(j = 4 ;j>num;j--){
+            array2[j].style.color = 'grey'
+        }
+    })
+  
+
+        if(bollean == true){
+            element.addEventListener('mouseleave', () => {
+                num = index
+                let bx2 = document.querySelectorAll('.bx')
+                let array2 = Array.from(bx2)
+                for (let i = 0; i <= num; i++) {
+                    if(bollean == false){
+                        break;
+                    }
+                    array2[i].style.color = 'grey'
+                }
+            })
+        }
+ 
 })
 let str = ``
 submit_button.addEventListener('click', () => {
@@ -26,7 +57,11 @@ submit_button.addEventListener('click', () => {
     let inputemail = document.getElementById('inputemail').value;
     let review = document.getElementById('review').value;
     let str2 = ``
-        for(i=0;i<=num;i++){
+
+    if((inputname != '')&& (inputemail != '') && (review != '')){
+
+    
+        for( let i=0;i<=num;i++){
             str2 += `<i class='bx bxs-star '></i>`
         }
     str += `
@@ -45,4 +80,5 @@ submit_button.addEventListener('click', () => {
         element.style.scale = '1'
      })
      submit_button.disabled = true
+    }
 })
